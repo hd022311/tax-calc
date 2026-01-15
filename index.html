@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遺產稅試算 - 富邦俊德製作</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        :root { --fubon-green: #00b900; --fubon-blue: #004a99; --gold: #b8860b; --warning-red: #d93025; }
+        body { font-family: -apple-system, "微軟正黑體", sans-serif; background-color: #f0f2f5; padding: 15px; margin: 0; }
+        .container { max-width: 480px; margin: 10px auto; background: white; padding: 0; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .brand-header { background: linear-gradient(135deg, #0056b3, #00b900); color: white; padding: 25px 15px; text-align: center; }
+        .brand-header h1 { margin: 0; font-size: 26px; letter-spacing: 2px; }
+        .brand-header p { margin: 5px 0 0; opacity: 0.9; font-size: 14px; }
+        .content { padding: 20px; }
+        .unit-hint { font-size: 12px; color: var(--warning-red); font-weight: bold; margin-bottom: 15px; text-align: right; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; text-align: right; padding-right: 50px; }
+        .unit-tag { position: absolute; right: 15px; color: #777; font-size: 14px; }
+        .checkbox-group { display: flex; align-items: center; background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee; }
+        .checkbox-group input { width: 20px; height: 20px; margin-right: 12px; }
+        .btn-calc { width: 100%; padding: 16px; background-color: #004a99; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .result-box { margin-top: 25px; padding: 20px; background: #fff; border: 2px solid var(--fubon-green); border-radius: 15px; display: none; }
+        .tax-val { font-size: 30px; color: var(--warning-red); font-weight: bold; text-align: center; margin: 10px 0; }
+        .info-section { font-size: 13px; color: #555; background: #fdfaf0; padding: 15px; border-radius: 10px; margin-top: 15px; border-left: 5px solid var(--gold); }
+        .warning-text { font-size: 12px; color: #7f8c8d; line-height: 1.6; margin-top: 15px; padding: 10px; border-top: 1px solid #eee; }
+        .footer { text-align: center; padding: 20px; font-size: 13px; color: #888; background: #f8f9fa; }
+        .btn-send { width: 100%; padding: 12px; background-color: var(--fubon-green); color: white; border: none; border-radius: 10px; font-size: 16px; margin-top: 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="brand-header">
+        <h1>富邦俊德製作</h1>
+        <p>專業遺產稅自動試算系統 (2026最新版)</p>
+    </div>
+
+    <div class="content">
+        <div class="unit-hint">※ 本系統單位均為「萬元」</div>
+        
+        <div class="input-group">
+            <label>土地 (公告現值總額)</label>
+            <div class="input-wrapper"><input type="number" id="assets_land" placeholder="0"><span class="unit-tag">萬元</span></div>
+        </div>
+        <div class="input-group">
+            <label>房屋 (評定現值總額)</label>
+            <div class="input-wrapper"><input type="number" id="assets_house" placeholder="0"><span class="unit-tag">萬元</span></div>
+        </div>
+        <div class="input-group">
+            <label>股票 / 基金 (市價)</label>
+            <div class="input-wrapper"><input type="number" id="assets_stocks" placeholder="0"><span class="unit-tag">萬元</span></div>
+        </div>
+        <div class="input-group">
+            <label>現金 / 存款</label>
+            <div class="input-wrapper"><input type="number" id="assets_cash" placeholder="0"><span class="unit-tag">萬元</span></div>
+        </div>
+        <div class="input-group">
+            <label>其他財產</label>
+            <div class="input-wrapper"><input type="number" id="assets_others" placeholder="0"><span class="unit-tag">萬元</span></div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="has_spouse" checked>
+            <label for="has_spouse" style="margin-bottom:0;">有配偶 (扣除額 553萬)</label>
+        </div>
+
+        <div class="input-group">
+            <label>子女/直系卑親屬人數 (每人56萬)</label>
+            <div class="input-wrapper"><input type="number" id="cnt_child" value="0"><span class="unit-tag">人</span></div>
+        </div>
+
+        <button class="btn-calc" onclick="calculate()">立即計算並生成詳報</button>
+
+        <div id="resultBox" class="result-box">
+            <div style="text-align:center; font-weight:bold; color:#555;">試算報告：預估應納稅額</div>
+            <div class="tax-val" id="taxVal">$0 元</div>
+            <div id="calcDetail" style="font-size:14px; border-top:1px solid #eee; padding-top:10px; color: #333;"></div>
+            
+            <div class="info-section">
+                <strong>【2026最新稅務標準】</strong><br>
+                • 免稅額：1,333 萬元 / 喪葬費：138 萬元。<br>
+                • <strong>稅率級距：</strong><br>
+                1. 5,621萬以下：10%<br>
+                2. 超過5,621萬~1億1,242萬：15%<br>
+                3. 超過1億1,242萬：20%
+            </div>
+
+            <div class="warning-text">
+                <strong>※ 免責聲明：</strong>本試算結果僅供參考，實際課稅金額以國稅局核定為準。遺產稅規劃涉及個別家庭狀況，建議洽詢專業顧問。
+            </div>
+
+            <button class="btn-send" onclick="sendToLine()">傳送試算報告給俊德</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 <strong>富邦俊德</strong> 專業諮詢服務
+    </div>
+</div>
+
+<script>
+    liff.init({ liffId: "你的LIFF_ID" });
+
+    function calculate() {
+        const toWan = 10000;
+        const totalAssets = ( (parseFloat(document.getElementById('assets_land').value) || 0) +
+                             (parseFloat(document.getElementById('assets_house').value) || 0) +
+                             (parseFloat(document.getElementById('assets_stocks').value) || 0) +
+                             (parseFloat(document.getElementById('assets_cash').value) || 0) +
+                             (parseFloat(document.getElementById('assets_others').value) || 0) ) * toWan;
+
+        const exemption = 13330000;
+        const spouseDed = document.getElementById('has_spouse').checked ? 5530000 : 0;
+        const childDed = (parseFloat(document.getElementById('cnt_child').value) || 0) * 560000;
+        const funeralDed = 1380000;
+
+        const totalDeductions = exemption + spouseDed + childDed + funeralDed;
+        const netEstate = Math.max(0, totalAssets - totalDeductions);
+        
+        let tax = 0;
+        let rateStr = "";
+
+        // 使用 2026 最新級距邏輯
+        if (netEstate <= 56210000) {
+            tax = netEstate * 0.1;
+            rateStr = "10%";
+        } else if (netEstate <= 112420000) {
+            // 超過5,621萬部分之15% + 5,621,000
+            tax = 5621000 + (netEstate - 56210000) * 0.15;
+            rateStr = "15%";
+        } else {
+            // 超過1億1,242萬部分之20% + 14,052,500
+            tax = 14052500 + (netEstate - 112420000) * 0.2;
+            rateStr = "20%";
+        }
+
+        document.getElementById('resultBox').style.display = 'block';
+        document.getElementById('taxVal').innerText = '$' + Math.round(tax).toLocaleString() + ' 元';
+        document.getElementById('calcDetail').innerHTML = `
+            總資產：$${(totalAssets/toWan).toLocaleString()} 萬<br>
+            總免稅+扣除額：$${(totalDeductions/toWan).toLocaleString()} 萬<br>
+            遺產淨額：$${(netEstate/toWan).toLocaleString()} 萬<br>
+            適用稅率：${rateStr}
+        `;
+    }
+
+    function sendToLine() {
+        const taxResult = document.getElementById('taxVal').innerText;
+        if (liff.isInClient()) {
+            liff.sendMessages([{
+                type: 'text',
+                text: `【富邦俊德 - 遺產稅試算報告】\n預估納稅金額：${taxResult}\n(依2026最新課稅級距試算)`
+            }]).then(() => {
+                alert('報告已傳送！');
+                liff.closeWindow();
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
