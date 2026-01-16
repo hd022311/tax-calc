@@ -27,7 +27,7 @@
         .btn-calc { width: 100%; padding: 20px; background: linear-gradient(135deg, #004a99, #0066cc); color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 30px; }
         .result-box { margin-top: 35px; padding: 25px; border-radius: 25px; display: none; background: white; border: 2px solid #eee; }
         .tax-val { font-size: 36px; color: #d93025; font-weight: 900; text-align: center; margin: 10px 0; }
-        .reference-img { width: 100%; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .reference-img { width: 100%; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee; }
         .btn-send { width: 100%; padding: 15px; background-color: var(--fubon-green); color: white; border: none; border-radius: 12px; font-size: 17px; margin-top: 20px; cursor: pointer; font-weight: bold; }
         .footer { text-align: center; padding: 25px; font-size: 13px; color: #888; background: #f8f9fa; border-top: 1px solid #eee; line-height: 1.6; }
         .disclaimer { font-size: 11px; color: #aaa; margin-top: 10px; text-align: justify; }
@@ -38,7 +38,7 @@
 <div class="container">
     <div class="brand-header">
         <div class="profile-area">
-            <img src="https://drive.google.com/uc?export=view&id=1DIjJdTt_HDEYrAJVj0yKzbO81pQG2Ndh" class="profile-pic" alt="俊德">
+            <img src="https://lh3.googleusercontent.com/d/1DIjJdTt_HDEYrAJVj0yKzbO81pQG2Ndh" class="profile-pic" alt="俊德">
             <div class="brand-text">
                 <h1>富邦俊德</h1>
                 <p>專業資產傳承規劃諮詢</p>
@@ -75,7 +75,7 @@
             
             <div style="margin-top:25px; border-top:2px solid var(--fubon-blue); padding-top:15px;">
                 <div style="font-weight:bold; color:var(--fubon-blue); margin-bottom:10px;">📋 遺產稅率與扣除額對照表</div>
-                <img src="https://drive.google.com/uc?export=view&id=1p-O6W7q7e89QW3F2Q9UqS6P-tGvN5S-C" class="reference-img" alt="遺產稅對照表">
+                <img src="https://lh3.googleusercontent.com/d/1p-O6W7q7e89QW3F2Q9UqS6P-tGvN5S-C" class="reference-img" alt="遺產稅對照表">
             </div>
 
             <button class="btn-send" onclick="sendToLine()">傳送分析報告給俊德</button>
@@ -129,7 +129,7 @@
 
         const ctx = document.getElementById('assetChart').getContext('2d');
         if(myChart) myChart.destroy();
-        myChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['土地', '房屋', '其他'], datasets: [{ data: [v_land, v_house, v_others], backgroundColor: ['#004a99', '#00b900', '#ffce56'] }] } });
+        myChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['土地', '房屋', '存款股票'], datasets: [{ data: [v_land, v_house, v_others], backgroundColor: ['#004a99', '#00b900', '#ffce56'] }] } });
 
         fetch(GOOGLE_URL, {
             method: 'POST', mode: 'no-cors',
@@ -142,7 +142,7 @@
         
         setTimeout(() => {
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }, 300);
+        }, 500);
     }
 
     function sendToLine() {
