@@ -7,38 +7,27 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --fubon-green: #00b900; --fubon-blue: #004a99; --gold: #b8860b; }
-        body { font-family: -apple-system, "微軟正黑體", sans-serif; background-color: #f4f7fa; padding: 15px; margin: 0; color: #333; }
+        :root { --fubon-green: #00b900; --fubon-blue: #004a99; }
+        body { font-family: -apple-system, "微軟正黑體", sans-serif; background-color: #f4f7fa; padding: 15px; margin: 0; }
         .container { max-width: 480px; margin: auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        
         .brand-header { background: linear-gradient(135deg, #004a99, #00b900); color: white; padding: 35px 20px; text-align: center; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
         .profile-area { display: flex; align-items: center; justify-content: center; gap: 15px; }
         .profile-pic { width: 90px; height: 90px; border-radius: 50%; border: 4px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.3); object-fit: cover; }
-        .brand-text h1 { margin: 0; font-size: 26px; letter-spacing: 1px; }
+        .brand-text h1 { margin: 0; font-size: 26px; }
         .brand-text p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
-
         .content { padding: 30px 25px; }
         .section-title { font-size: 18px; color: var(--fubon-blue); border-left: 6px solid var(--fubon-green); padding-left: 12px; margin: 30px 0 15px; font-weight: bold; }
-        .unit-hint { font-size: 12px; color: #d93025; font-weight: bold; text-align: right; margin-bottom: 10px; }
-        
+        .unit-hint { font-size: 12px; color: #d93025; font-weight: bold; text-align: right; }
         .input-group { margin-bottom: 18px; }
         label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #555; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
-        input[type="number"] { width: 100%; padding: 14px; border: 1.5px solid #eee; border-radius: 15px; font-size: 16px; text-align: right; padding-right: 50px; background: #fcfcfc; transition: 0.3s; }
-        input:focus { border-color: var(--fubon-green); background: white; outline: none; box-shadow: 0 0 10px rgba(0,185,0,0.1); }
-        .unit-tag { position: absolute; right: 15px; color: #999; font-size: 14px; }
-        
-        .checkbox-group { display: flex; align-items: center; background: #f0fdf4; padding: 15px; border-radius: 15px; border: 1px solid #dcfce7; margin-top: 10px; }
-        
-        .btn-calc { width: 100%; padding: 20px; background: linear-gradient(135deg, #004a99, #0066cc); color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 30px; box-shadow: 0 8px 20px rgba(0,74,153,0.3); }
-        
-        .result-box { margin-top: 35px; padding: 25px; border-radius: 25px; display: none; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 2px solid #eee; }
-        .tax-label { text-align: center; color: #666; font-size: 16px; font-weight: bold; }
-        .tax-val { font-size: 36px; color: #d93025; font-weight: 900; text-align: center; margin: 10px 0; letter-spacing: -1px; }
-        
-        #chartContainer { margin: 25px 0; max-height: 250px; }
-        
-        .btn-send { width: 100%; padding: 15px; background-color: var(--fubon-green); color: white; border: none; border-radius: 12px; font-size: 17px; margin-top: 20px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        input[type="number"] { width: 100%; padding: 14px; border: 1.5px solid #eee; border-radius: 15px; font-size: 16px; text-align: right; padding-right: 50px; background: #fcfcfc; }
+        .unit-tag { position: absolute; right: 15px; color: #999; }
+        .checkbox-group { display: flex; align-items: center; background: #f0fdf4; padding: 15px; border-radius: 15px; border: 1px solid #dcfce7; }
+        .btn-calc { width: 100%; padding: 20px; background: linear-gradient(135deg, #004a99, #0066cc); color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+        .result-box { margin-top: 35px; padding: 25px; border-radius: 25px; display: none; background: white; border: 2px solid #eee; }
+        .tax-val { font-size: 36px; color: #d93025; font-weight: 900; text-align: center; margin: 10px 0; }
+        .btn-send { width: 100%; padding: 15px; background-color: var(--fubon-green); color: white; border: none; border-radius: 12px; font-size: 17px; margin-top: 20px; cursor: pointer; font-weight: bold; }
         .footer { text-align: center; padding: 30px; font-size: 13px; color: #999; background: #fafafa; border-top: 1px solid #eee; }
     </style>
 </head>
@@ -47,7 +36,7 @@
 <div class="container">
     <div class="brand-header">
         <div class="profile-area">
-            <img src="https://lh3.googleusercontent.com/d/1DIjJdTt_HDEYrAJVj0yKzbO81pQG2Ndh" class="profile-pic" alt="俊德">
+            <img src="https://drive.google.com/uc?export=view&id=1DIjJdTt_HDEYrAJVj0yKzbO81pQG2Ndh" class="profile-pic" alt="俊德">
             <div class="brand-text">
                 <h1>富邦俊德</h1>
                 <p>專業資產傳承規劃諮詢</p>
@@ -57,59 +46,48 @@
 
     <div class="content">
         <div class="unit-hint">※ 試算單位均為「萬」元</div>
-        
         <div class="section-title">一、遺產資產概況</div>
-        <div class="input-group"><label>土地 (公告現值總額)</label><div class="input-wrapper"><input type="number" id="land" placeholder="0"><span class="unit-tag">萬</span></div></div>
-        <div class="input-group"><label>房屋 (評定現值總額)</label><div class="input-wrapper"><input type="number" id="house" placeholder="0"><span class="unit-tag">萬</span></div></div>
-        <div class="input-group"><label>存款 / 股票 / 基金</label><div class="input-wrapper"><input type="number" id="cash_others" placeholder="0"><span class="unit-tag">萬</span></div></div>
+        <div class="input-group"><label>土地 (公告現值總額)</label><div class="input-wrapper"><input type="number" id="land" value="0"><span class="unit-tag">萬</span></div></div>
+        <div class="input-group"><label>房屋 (評定現值總額)</label><div class="input-wrapper"><input type="number" id="house" value="0"><span class="unit-tag">萬</span></div></div>
+        <div class="input-group"><label>存款 / 股票 / 基金</label><div class="input-wrapper"><input type="number" id="cash_others" value="0"><span class="unit-tag">萬</span></div></div>
         
         <div class="section-title">二、債務規劃項目</div>
-        <div class="input-group"><label>未償債務 / 房貸餘額</label><div class="input-wrapper"><input type="number" id="debts" placeholder="0" style="border-color: #ffcccc;"><span class="unit-tag">萬</span></div></div>
-
+        <div class="input-group"><label>未償債務 / 房貸餘額</label><div class="input-wrapper"><input type="number" id="debts" value="0" style="border-color: #ffcccc;"><span class="unit-tag">萬</span></div></div>
+        
         <div class="section-title">三、親屬扣除額設定</div>
         <div class="checkbox-group">
             <input type="checkbox" id="has_spouse" checked style="width:22px; height:22px; margin-right:12px;">
-            <label for="has_spouse" style="margin:0; font-size:15px;">有配偶 (扣除 553 萬)</label>
+            <label for="has_spouse" style="margin:0;">有配偶 (扣除 553 萬)</label>
         </div>
-        <div class="input-group" style="margin-top:15px;"><label>子女 / 直系卑親屬人數</label><div class="input-wrapper"><input type="number" id="cnt_child" value="0"><span class="unit-tag">人</span></div></div>
+        <div class="input-group" style="margin-top:15px;"><label>子女人數</label><div class="input-wrapper"><input type="number" id="cnt_child" value="0"><span class="unit-tag">人</span></div></div>
         <div class="input-group"><label>父母人數</label><div class="input-wrapper"><input type="number" id="cnt_parent" value="0"><span class="unit-tag">人</span></div></div>
-        <div class="input-group"><label>身心障礙繼承人數</label><div class="input-wrapper"><input type="number" id="cnt_disability" value="0" style="border-color: #ffe0b2;"><span class="unit-tag">人</span></div></div>
+        <div class="input-group"><label>身心障礙繼承人數</label><div class="input-wrapper"><input type="number" id="cnt_disability" value="0"><span class="unit-tag">人</span></div></div>
 
         <button class="btn-calc" onclick="calculate()">分析資產並計算稅額</button>
 
         <div id="resultBox" class="result-box">
-            <div class="tax-label">預估應納遺產稅額</div>
+            <div style="text-align:center;color:#666;font-weight:bold;">預估應納稅額</div>
             <div class="tax-val" id="taxVal">$0 元</div>
-            
-            <div id="chartContainer">
-                <canvas id="assetChart"></canvas>
-            </div>
-
-            <div id="calcDetail" style="font-size:14px; border-top:1px dotted #ccc; padding-top:15px; line-height: 2; color:#555;"></div>
+            <canvas id="assetChart" style="margin:20px 0;"></canvas>
+            <div id="calcDetail" style="font-size:14px; border-top:1px dotted #ccc; padding-top:15px; line-height: 1.8;"></div>
             <button class="btn-send" onclick="sendToLine()">傳送分析報告給俊德</button>
         </div>
     </div>
-
-    <div class="footer">
-        <strong>富邦俊德 專業諮詢團隊</strong><br>
-        您的傳承規劃師：提供最精準的稅務建議<br>
-        <span style="font-size:11px; margin-top:10px; display:block;">* 資料將同步至後台以提供更精確的諮詢建議</span>
-    </div>
+    <div class="footer"><strong>富邦俊德 專業諮詢團隊</strong></div>
 </div>
 
 <script>
     let userName = "客戶";
     let myChart = null;
 
-    // --- 自動帶入資訊 ---
+    // --- 已填入您的專屬資訊 ---
     const LIFF_ID = "2008902145-EOR8LZNp"; 
-    const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbyZH94MRPHdO8doeaL1NB_5DAt4FPqGTdQ3qknsCvS5aw1piRGKO6pFomUzjlyMIPbbVg/exec"; 
-    // ------------------
+    const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbxMzfkPaXbT07gmWgLUohkIu6FE2QwptItayV1zT89QRDWpyuJ1WOmwdy8T6A4v0spk8g/exec"; 
+    // ------------------------
 
     liff.init({ liffId: LIFF_ID }).then(() => {
-        if (liff.isLoggedIn()) {
-            liff.getProfile().then(p => { userName = p.displayName; });
-        } else { liff.login(); }
+        if (liff.isLoggedIn()) { liff.getProfile().then(p => { userName = p.displayName; }); }
+        else { liff.login(); }
     });
 
     function calculate() {
@@ -118,68 +96,43 @@
         const v_house = parseFloat(document.getElementById('house').value) || 0;
         const v_others = parseFloat(document.getElementById('cash_others').value) || 0;
         const v_debts = parseFloat(document.getElementById('debts').value) || 0;
-        
-        const totalAssets = (v_land + v_house + v_others) * toWan;
-        const totalDeductions = (1333 + (document.getElementById('has_spouse').checked ? 553 : 0) + 
-                                (parseFloat(document.getElementById('cnt_child').value)||0)*56 + 
-                                (parseFloat(document.getElementById('cnt_parent').value)||0)*138 + 
-                                (parseFloat(document.getElementById('cnt_disability').value)||0)*693 + 
-                                138 + v_debts) * toWan;
+        const v_child = parseFloat(document.getElementById('cnt_child').value) || 0;
+        const v_parent = parseFloat(document.getElementById('cnt_parent').value) || 0;
+        const v_disability = parseFloat(document.getElementById('cnt_disability').value) || 0;
 
+        const totalAssets = (v_land + v_house + v_others) * toWan;
+        const totalDeductions = (1333 + (document.getElementById('has_spouse').checked ? 553 : 0) + (v_child * 56) + (v_parent * 138) + (v_disability * 693) + 138 + v_debts) * toWan;
         const netEstate = Math.max(0, totalAssets - totalDeductions);
+        
         let tax = 0; let rate = "10%";
-        if (netEstate <= 50000000) { tax = netEstate * 0.1; rate = "10%"; }
+        if (netEstate <= 50000000) { tax = netEstate * 0.1; }
         else if (netEstate <= 100000000) { tax = netEstate * 0.15 - 2500000; rate = "15%"; }
         else { tax = netEstate * 0.2 - 7500000; rate = "20%"; }
 
         const taxStr = '$' + Math.round(tax).toLocaleString() + ' 元';
         document.getElementById('taxVal').innerText = taxStr;
         document.getElementById('resultBox').style.display = 'block';
-        
-        document.getElementById('calcDetail').innerHTML = `
-            🔹 資產總值：${(totalAssets/toWan).toLocaleString()} 萬<br>
-            🔹 扣除總額：${(totalDeductions/toWan).toLocaleString()} 萬<br>
-            🔹 適用稅率：<span style="color:#d93025; font-weight:bold;">${rate}</span> (遺產淨額 ${(netEstate/toWan).toLocaleString()} 萬)
-        `;
+        document.getElementById('calcDetail').innerHTML = `🔹 適用稅率：${rate}<br>🔹 遺產淨額：${(netEstate/10000).toLocaleString()} 萬`;
 
-        // 畫圓餅圖
         const ctx = document.getElementById('assetChart').getContext('2d');
         if(myChart) myChart.destroy();
-        myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['土地', '房屋', '其他資產'],
-                datasets: [{
-                    data: [v_land, v_house, v_others],
-                    backgroundColor: ['#004a99', '#00b900', '#ffce56']
-                }]
-            },
-            options: { plugins: { legend: { position: 'bottom' } } }
-        });
+        myChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['土地', '房屋', '其他'], datasets: [{ data: [v_land, v_house, v_others], backgroundColor: ['#004a99', '#00b900', '#ffce56'] }] } });
 
-        // 傳送至 Google
+        // 傳送至 Google 表單 (名稱嚴格對齊 Apps Script)
         fetch(GOOGLE_URL, {
-            method: 'POST',
-            mode: 'no-cors',
+            method: 'POST', mode: 'no-cors',
             body: JSON.stringify({
                 userName: userName, land: v_land, house: v_house, stocks: v_others,
-                debts: v_debts, parentDed: document.getElementById('cnt_parent').value,
-                disability: document.getElementById('cnt_disability').value, tax: taxStr
+                debts: v_debts, parentDed: v_parent, disability: v_disability, childCnt: v_child,
+                tax: taxStr
             })
         });
-        
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
 
     function sendToLine() {
         if (liff.isInClient()) {
-            liff.sendMessages([{
-                type: 'text',
-                text: `【富邦俊德 - 遺產稅分析報告】\n客戶：${userName}\n預估稅額：${document.getElementById('taxVal').innerText}\n(報告已同步至後台，俊德將盡快為您提供專業規劃建議)`
-            }]).then(() => {
-                alert('報告已傳送！');
-                liff.closeWindow();
-            });
+            liff.sendMessages([{ type: 'text', text: `【富邦俊德 - 遺產稅分析】\n客戶：${userName}\n預估稅額：${document.getElementById('taxVal').innerText}\n(報告已傳送，俊德將盡快為您規劃)` }]).then(() => liff.closeWindow());
         }
     }
 </script>
