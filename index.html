@@ -27,8 +27,10 @@
         .btn-calc { width: 100%; padding: 20px; background: linear-gradient(135deg, #004a99, #0066cc); color: white; border: none; border-radius: 15px; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 30px; }
         .result-box { margin-top: 35px; padding: 25px; border-radius: 25px; display: none; background: white; border: 2px solid #eee; }
         .tax-val { font-size: 36px; color: #d93025; font-weight: 900; text-align: center; margin: 10px 0; }
+        .reference-img { width: 100%; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .btn-send { width: 100%; padding: 15px; background-color: var(--fubon-green); color: white; border: none; border-radius: 12px; font-size: 17px; margin-top: 20px; cursor: pointer; font-weight: bold; }
-        .footer { text-align: center; padding: 30px; font-size: 13px; color: #999; background: #fafafa; border-top: 1px solid #eee; }
+        .footer { text-align: center; padding: 25px; font-size: 13px; color: #888; background: #f8f9fa; border-top: 1px solid #eee; line-height: 1.6; }
+        .disclaimer { font-size: 11px; color: #aaa; margin-top: 10px; text-align: justify; }
     </style>
 </head>
 <body>
@@ -70,20 +72,31 @@
             <div class="tax-val" id="taxVal">$0 元</div>
             <canvas id="assetChart" style="margin:20px 0;"></canvas>
             <div id="calcDetail" style="font-size:14px; border-top:1px dotted #ccc; padding-top:15px; line-height: 1.8;"></div>
+            
+            <div style="margin-top:25px; border-top:2px solid var(--fubon-blue); padding-top:15px;">
+                <div style="font-weight:bold; color:var(--fubon-blue); margin-bottom:10px;">📋 遺產稅率與扣除額對照表</div>
+                <img src="https://drive.google.com/uc?export=view&id=1p-O6W7q7e89QW3F2Q9UqS6P-tGvN5S-C" class="reference-img" alt="遺產稅對照表">
+            </div>
+
             <button class="btn-send" onclick="sendToLine()">傳送分析報告給俊德</button>
         </div>
     </div>
-    <div class="footer"><strong>富邦俊德 專業諮詢團隊</strong></div>
+    
+    <div class="footer">
+        <strong>富邦俊德 | 您的專業傳承顧問</strong><br>
+        您的資產安全與家族傳承，由我為您守護<br>
+        <div class="disclaimer">
+            ※ 本試算結果僅供參考，實際稅額仍須以國稅局核定為準。資料將同步紀錄以利提供後續諮詢服務。
+        </div>
+    </div>
 </div>
 
 <script>
     let userName = "客戶";
     let myChart = null;
 
-    // --- 已填入您的專屬資訊 ---
     const LIFF_ID = "2008902145-EOR8LZNp"; 
     const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbxMzfkPaXbT07gmWgLUohkIu6FE2QwptItayV1zT89QRDWpyuJ1WOmwdy8T6A4v0spk8g/exec"; 
-    // ------------------------
 
     liff.init({ liffId: LIFF_ID }).then(() => {
         if (liff.isLoggedIn()) { liff.getProfile().then(p => { userName = p.displayName; }); }
@@ -118,7 +131,6 @@
         if(myChart) myChart.destroy();
         myChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['土地', '房屋', '其他'], datasets: [{ data: [v_land, v_house, v_others], backgroundColor: ['#004a99', '#00b900', '#ffce56'] }] } });
 
-        // 傳送至 Google 表單 (名稱嚴格對齊 Apps Script)
         fetch(GOOGLE_URL, {
             method: 'POST', mode: 'no-cors',
             body: JSON.stringify({
@@ -127,7 +139,10 @@
                 tax: taxStr
             })
         });
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        
+        setTimeout(() => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }, 300);
     }
 
     function sendToLine() {
